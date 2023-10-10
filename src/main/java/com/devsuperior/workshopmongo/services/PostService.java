@@ -9,6 +9,8 @@ import com.devsuperior.workshopmongo.services.exceptioons.ResourceNotFoundExcept
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Instant;
+
 @Service
 public class PostService {
 
@@ -23,6 +25,12 @@ public class PostService {
 
 	public Flux<PostDTO> findByTitle(String text) {
 		return repository.searchTitle(text).map(PostDTO::new);
+	}
+
+	public Flux<PostDTO> fullSearch(String text, Instant minDate, Instant maxDate) {
+		maxDate = maxDate.plusSeconds(86400);
+		return repository.fullSearch(text, minDate, maxDate)
+				.map(PostDTO::new);
 	}
 
 }
