@@ -21,6 +21,9 @@ import com.devsuperior.workshopmongo.services.PostService;
 @RequestMapping(value = "/posts")
 public class PostController {
 
+	/*
+
+
 	@Autowired
 	private PostService service;
 
@@ -50,4 +53,5 @@ public class PostController {
 		List<PostDTO> list = service.fullSearch(text, min, max);
 		return ResponseEntity.ok(list);
 	}
+	 */
 }
