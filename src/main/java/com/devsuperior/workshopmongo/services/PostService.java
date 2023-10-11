@@ -1,5 +1,6 @@
 package com.devsuperior.workshopmongo.services;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,11 @@ public class PostService {
 	public Flux<PostDTO> fullSearch(String text, Instant minDate, Instant maxDate) {
 		maxDate = maxDate.plusSeconds(86400);
 		return repository.fullSearch(text, minDate, maxDate)
+				.map(PostDTO::new);
+	}
+
+	public Flux<PostDTO> findByUser(String id) {
+		return repository.findByUser(new ObjectId(id))
 				.map(PostDTO::new);
 	}
 
